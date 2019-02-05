@@ -1,7 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
+
+router.get('/:campaignId',function(req,res,next){
+  res.setHeader('Content-Type', 'application/json');
+  res.send(req.params.campaignId);
+});
+
 router.get('/', function(req, res, next) {
   res.setHeader('Content-Type', 'application/json');
   res.send(campaigns);

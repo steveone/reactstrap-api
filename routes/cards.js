@@ -1,7 +1,17 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
+//return campaigns matching campaignID provided
+router.get('/:campaignId',function(req,res,next){
+  res.setHeader('Content-Type', 'application/json');
+  const campaignId = req.params.campaignId;
+  let newCards = cards.filter((cur)=>{
+    return (cur['campaignId']== campaignId)
+  });
+  res.send(newCards);
+});
+
+//return all campaigns
 router.get('/', function(req, res, next) {
   res.setHeader('Content-Type', 'application/json');
   res.send(cards);
@@ -9,7 +19,7 @@ router.get('/', function(req, res, next) {
 
 module.exports = router;
 
-const cards = [
+let cards = [
   {
     "campaignId": "CN201701182",
     "cardTitle": "Title 1",
