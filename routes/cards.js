@@ -1,6 +1,34 @@
 var express = require('express');
 var router = express.Router();
 
+/*using tital for state changes because it is unique and id isn't*/
+router.post('',function(req,res,next){
+  res.setHeader('Content-Type', 'application/json');
+  const title = req.body.title;
+  const campaignId = req.body.campaignId;
+  const stateChange  = req.body.stateChange;
+  //get card by title
+  cards = cards.map((cur)=>{
+    if (cur['cardTitle'] == title) {
+      cur['currentWorkflow']="changed";
+      return cur;
+    }
+    return cur;
+  })
+  .filter((cur)=>{
+    return (cur['campaignId']== campaignId)
+  });
+//  let cardObject = newCards[0];
+//  cardObject['currentWorkFlow']="changed";
+//  console.log(cardObject);
+//  Object.assign(cards,cardObject);
+/*  newCards = cards.filter((cur)=>{
+    return (cur['campaignId']== campaignId)
+  });
+  */
+  res.send(cards);
+});
+
 //return campaigns matching campaignID provided
 router.get('/:campaignId',function(req,res,next){
   res.setHeader('Content-Type', 'application/json');
