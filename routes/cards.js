@@ -1,13 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-/*using tital for state changes because it is unique and id isn't*/
-router.post('',function(req,res,next){
-  res.setHeader('Content-Type', 'application/json');
-  const title = req.body.title;
-  const campaignId = req.body.campaignId;
-  const newWorkflow  = req.body.newWorkflow;
-  //get card by title
+updateCard = (title,newWorkflow) => {
   cards = cards.map((cur)=>{
     if (cur['cardTitle'] == title) {
       cur['currentWorkflow']=newWorkflow;
@@ -15,7 +9,21 @@ router.post('',function(req,res,next){
     }
     return cur;
   })
-  .filter((cur)=>{
+}
+
+/*using tital for state changes because it is unique and id isn't*/
+router.post('',function(req,res,next){
+  res.setHeader('Content-Type', 'application/json');
+  const title = req.body.title;
+  const campaignId = req.body.campaignId;
+  const newWorkflow  = req.body.newWorkflow;
+  //update card after a 5 second pause
+  //should validate that the workflow passed is validate
+  setTimeout(function() {updateCard(title,newWorkflow)}, 5000);
+  //return cards by campaign even though the card isn't updates yet
+
+  //should return a status of 202 to notify that the change was accepted
+  cards.filter((cur)=>{
     return (cur['campaignId']== campaignId)
   });
 //  let cardObject = newCards[0];
