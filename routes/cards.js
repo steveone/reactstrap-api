@@ -6,11 +6,11 @@ router.post('',function(req,res,next){
   res.setHeader('Content-Type', 'application/json');
   const title = req.body.title;
   const campaignId = req.body.campaignId;
-  const stateChange  = req.body.stateChange;
+  const newWorkflow  = req.body.newWorkflow;
   //get card by title
   cards = cards.map((cur)=>{
     if (cur['cardTitle'] == title) {
-      cur['currentWorkflow']="changed";
+      cur['currentWorkflow']=newWorkflow;
       return cur;
     }
     return cur;
