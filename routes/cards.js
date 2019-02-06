@@ -23,9 +23,9 @@ router.post('',function(req,res,next){
   //return cards by campaign even though the card isn't updates yet
 
   //should return a status of 202 to notify that the change was accepted
-  cards.filter((cur)=>{
-    return (cur['campaignId']== campaignId)
-  });
+//  cards.filter((cur)=>{
+//    return (cur['campaignId']== campaignId)
+//  });
 //  let cardObject = newCards[0];
 //  cardObject['currentWorkFlow']="changed";
 //  console.log(cardObject);
@@ -34,7 +34,8 @@ router.post('',function(req,res,next){
     return (cur['campaignId']== campaignId)
   });
   */
-  res.send(cards);
+//  res.send(cards);
+res.sendStatus(202);
 });
 
 //return campaigns matching campaignID provided
