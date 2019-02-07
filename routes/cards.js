@@ -38,6 +38,16 @@ router.post('',function(req,res,next){
 res.sendStatus(202);
 });
 
+//return card based on titleId - for pending updates
+router.get('/title/:title',function(req,res,next){
+  res.setHeader('Content-Type', 'application/json');
+  const title = req.params.title;
+  let newCards = cards.filter((cur)=>{
+    return (cur['cardTitle']== title)
+  });
+  res.send(newCards);
+});
+
 //return campaigns matching campaignID provided
 router.get('/:campaignId',function(req,res,next){
   res.setHeader('Content-Type', 'application/json');
