@@ -17,25 +17,10 @@ router.post('',function(req,res,next){
   const title = req.body.title;
   const campaignId = req.body.campaignId;
   const newWorkflow  = req.body.newWorkflow;
-  //update card after a 5 second pause
-  //should validate that the workflow passed is validate
-  setTimeout(function() {updateCard(title,newWorkflow)}, 5000);
-  //return cards by campaign even though the card isn't updates yet
 
-  //should return a status of 202 to notify that the change was accepted
-//  cards.filter((cur)=>{
-//    return (cur['campaignId']== campaignId)
-//  });
-//  let cardObject = newCards[0];
-//  cardObject['currentWorkFlow']="changed";
-//  console.log(cardObject);
-//  Object.assign(cards,cardObject);
-/*  newCards = cards.filter((cur)=>{
-    return (cur['campaignId']== campaignId)
-  });
-  */
-//  res.send(cards);
-res.sendStatus(202);
+  setTimeout(function() {updateCard(title,newWorkflow)}, 5000);
+  //send "Accepted" status while the update is pending
+  res.sendStatus(202);
 });
 
 //return card based on titleId - for pending updates
